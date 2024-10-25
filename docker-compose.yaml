@@ -1,0 +1,12 @@
+
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Mariadb!2024_
+      MYSQL_DATABASE: snippetbox_db
+      MYSQL_USER: snippet_user
+      MYSQL_PASSWORD: Mariadb!2024_
+    ports:
+      - "3306:3306"
+
