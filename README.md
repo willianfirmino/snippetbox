@@ -1,1 +1,2 @@
-# snippetbox project from the book Let's go! from the author Alex Eduards
+# snippetbox
+Project from the book Let's go!
