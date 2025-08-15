@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: Passw0rd!0449
@@ -10,15 +10,18 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: --init-file /docker-entrypoint-initdb.d/schema.sql
 
-  adminer:
-    image: adminer
-    container_name: adminer
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: Passw0rd!0449
     ports:
-      - "8080:8080"
+      - "8080:80"
     depends_on:
       - mysql
 
-volumes:
-  mysql_data:
+volumes: {}
