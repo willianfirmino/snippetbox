@@ -12,8 +12,8 @@ import (
 
 type templateData struct {
 	CurrentYear     int
-	Snippet         models.Snippet
-	Snippets        []models.Snippet
+	Snippet         *models.Snippet
+	Snippets        []*models.Snippet
 	Form            any
 	Flash           string
 	IsAuthenticated bool
@@ -31,7 +31,7 @@ var functions = template.FuncMap{
 func newTemplateCache() (map[string]*template.Template, error) {
 	cache := map[string]*template.Template{}
 
-	pages, err := fs.Glob(ui.Files, "./ui/html/pages/*.tmpl")
+	pages, err := fs.Glob(ui.Files, "html/pages/*.tmpl")
 	if err != nil {
 		return nil, err
 	}
@@ -40,8 +40,8 @@ func newTemplateCache() (map[string]*template.Template, error) {
 		name := filepath.Base(page)
 
 		patterns := []string{
-			"./ui/html/base.tmpl",
-			"./ui/html/partials/*.tmpl",
+			"html/base.tmpl",
+			"html/partials/*.tmpl",
 			page,
 		}
 

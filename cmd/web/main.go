@@ -19,7 +19,7 @@ import (
 
 type application struct {
 	logger         *slog.Logger
-	snippets       *models.SnippetModel
+	snippets       models.SnippetModelInterface
 	users          *models.UserModel
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder

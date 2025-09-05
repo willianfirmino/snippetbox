@@ -1,0 +1,10 @@
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    environment:
+      - DSN=snippetbox_user:Passw0rd!0449@tcp(mysql:3306)/snippetbox_test_db?parseTime=true
+    command: go test -v ./...
